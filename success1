@@ -1,0 +1,125 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Sat Nov  6 12:20:40 2021
+
+@author: evewang
+"""
+import numpy as np
+import matplotlib.pyplot as plt
+# from mpl_toolkits.mplot3d import Axes3D
+
+
+# set parameters
+time_steps = 7200 # 2 hour air suspension
+num_simulation = 1000
+#assume a step every second
+
+
+x = 0
+y = 0
+z = 0
+person_contact = 0
+
+ax = plt.subplot(projection='3d')
+ax.set_xlabel('distance')
+ax.set_ylabel('width')
+ax.set_zlabel('height')
+
+#for i in range (0, num_simulation+1):
+# for one molecule
+import numpy as np
+import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D
+
+
+# set parameters
+time_steps = 7200 # 2 hour air suspension
+num_simulation = 1000
+#assume a step every second
+
+#random_step_size = 
+
+# choose direction to move in
+
+x = 0
+y = 0
+z = 0
+person_contact = 0
+#event = []
+
+ax = plt.subplot(projection='3d')
+
+for i in range (0, num_simulation+1):
+# for one molecule
+    index = 0
+    x = 0
+    y = 0
+    z = 0
+    x_plot = np.zeros(time_steps)
+    y_plot = np.zeros(time_steps)
+    z_plot = np.zeros(time_steps)
+    while index < time_steps:
+          if ((x < 200 and x > -200) and (y < 200 and y > -200) and (z < 200 and z > -200)):
+              #direction = (x_direction, 
+              x_direction = np.random.randint(-1,2)
+              if x_direction == -1:
+                  x += -1
+                  x_plot[index] = x
+              elif x_direction == 0: # CLARITY
+                  x += 0
+                  x_plot[index] = x
+              else:
+                  x += 1
+                  x_plot[index] = x
+        
+              y_direction = np.random.randint(-1,2)
+              if y_direction == -1:
+                  y += -1
+                  y_plot[index] = y
+              elif y_direction == 0:
+                  y += 0
+                  y_plot[index] = y
+              else:
+                  y+=1
+                  y_plot[index] = y
+        
+              z_direction = np.random.randint(-1,2)
+              if z_direction == -1:
+                  z+=-1
+                  z_plot[index] = z
+              elif z_direction== 0:
+                  z+=0
+                  z_plot[index] = z
+              else:
+                  z+=1
+                  z_plot[index] = z
+          else:
+              print("entered break")
+              person_contact += 1
+              x_plot=np.append(x_plot, x)
+              y_plot=np.append(y_plot, y)
+              z_plot=np.append(z_plot, z)
+              #print("contact", person_contact)
+              break
+          #print(x,y,z)
+          index+=1
+          
+          #ax = plot.axes(projection = '3d')
+    print(i)
+    print(x_plot)
+    #print(y_plot)
+    #print(z_plot)
+    #print(x,y,z)
+    
+    ax.plot(x_plot,y_plot,z_plot)
+    ax.set_xlabel('distance')
+    ax.set_ylabel('width')
+    ax.set_zlabel('height')
+    #ax.scatter(x, y, z)
+    #plt.savefig("inside.jpg")
+    i+=1
+
+print("person" , person_contact)
+plt.show()
+#plt.savefig("simulation.jpg")
