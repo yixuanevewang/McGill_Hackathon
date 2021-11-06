@@ -5,4 +5,6 @@ McGill 2021 Hackathon
 
 -simulated 1000 times again, but set abs(z) < 150 (to account for average height of person), resulted in 87 hits (ie. 8.7%)
 
+  - run again abs(z) < 150, 72 hit. run and generated graph in 3:16.39 min
+
 -set abs(x) and abs(y) < 1 (ie. 1 metre distance) and abs(z) <150, 519 hits out of 1000 (52% chance of being infected with non-top talking)
