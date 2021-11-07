@@ -3,76 +3,57 @@
 """
 Created on Sat Nov  6 12:20:40 2021
 
-@author: evewang
+@author: Jessica Zhu, Eve Wang
 """
 import numpy as np
 import matplotlib.pyplot as plt
-# from mpl_toolkits.mplot3d import Axes3D
 
+# set up blank 3D graph to plot points in
+ax = plt.subplot(projection='3d')
+ax.set_xlabel('Distance')
+ax.set_ylabel('Width')
+ax.set_zlabel('Height')
 
 # set parameters
 time_steps = 7200 # 2 hour air suspension
-num_simulation = 1000
-#assume a step every second
+num_simulation = 1000 #number of aribone virus
+distance = 200 # distance separating transmittor and bystander
+height = 150 # height of average person's head
+
+person_contact = 0 #variable for number of times virus reaches person
 
 
-x = 0
-y = 0
-z = 0
-person_contact = 0
-
-ax = plt.subplot(projection='3d')
-ax.set_xlabel('distance')
-ax.set_ylabel('width')
-ax.set_zlabel('height')
-
-#for i in range (0, num_simulation+1):
-# for one molecule
-import numpy as np
-import matplotlib.pyplot as plt
-from mpl_toolkits.mplot3d import Axes3D
-
-
-# set parameters
-time_steps = 7200 # 2 hour air suspension
-num_simulation = 1000
-#assume a step every second
-
-#random_step_size = 
-
-# choose direction to move in
-
-x = 0
-y = 0
-z = 0
-person_contact = 0
-#event = []
-
-ax = plt.subplot(projection='3d')
-
+# loop through 1000 molecules
 for i in range (0, num_simulation+1):
-# for one molecule
-    index = 0
+		# set initial x,y,z coordinates to be the origin
     x = 0
     y = 0
     z = 0
+    
+    # create array of zeros to plot movement of particle later
     x_plot = np.zeros(time_steps)
     y_plot = np.zeros(time_steps)
     z_plot = np.zeros(time_steps)
+    
+    index = 0
+    
+    #steps taken by one airborne virus
+    #random walk model of brownian motion
     while index < time_steps:
-          if ((x < 200 and x > -200) and (y < 200 and y > -200) and (z < 200 and z > -200)):
-              #direction = (x_direction, 
+          if abs(x) < distance and abs(y) < distance and abs(z) < height:
+              # choose a random x-direction for the molecule to move in
               x_direction = np.random.randint(-1,2)
               if x_direction == -1:
                   x += -1
                   x_plot[index] = x
-              elif x_direction == 0: # CLARITY
+              elif x_direction == 0: 
                   x += 0
                   x_plot[index] = x
               else:
                   x += 1
                   x_plot[index] = x
         
+        			# choose a random y-direction for the molecule to move in
               y_direction = np.random.randint(-1,2)
               if y_direction == -1:
                   y += -1
@@ -81,45 +62,51 @@ for i in range (0, num_simulation+1):
                   y += 0
                   y_plot[index] = y
               else:
-                  y+=1
+                  y += 1
                   y_plot[index] = y
         
+        			# choose a random z-direction for the molecule to move in
               z_direction = np.random.randint(-1,2)
               if z_direction == -1:
-                  z+=-1
+                  z += -1
                   z_plot[index] = z
               elif z_direction== 0:
-                  z+=0
+                  z += 0
                   z_plot[index] = z
               else:
-                  z+=1
+                  z += 1
                   z_plot[index] = z
+          # if the airborne virus reaches the person, will
           else:
-              print("entered break")
+              #print("entered break")
               person_contact += 1
-              x_plot=np.append(x_plot, x)
-              y_plot=np.append(y_plot, y)
-              z_plot=np.append(z_plot, z)
+              #x_plot=np.append(x_plot, x)
+              #y_plot=np.append(y_plot, y)
+              #z_plot=np.append(z_plot, z)
               #print("contact", person_contact)
               break
-          #print(x,y,z)
-          index+=1
-          
-          #ax = plot.axes(projection = '3d')
-    print(i)
-    print(x_plot)
+          index += 1
+
+    #print(i)
+    #print(x_plot)
     #print(y_plot)
     #print(z_plot)
     #print(x,y,z)
     
+    # plot the path of a single molecule
+    # will overlay when iterating the loop
     ax.plot(x_plot,y_plot,z_plot)
-    ax.set_xlabel('distance')
-    ax.set_ylabel('width')
-    ax.set_zlabel('height')
+    
+    #ax.set_xlabel('distance')
+    #ax.set_ylabel('width')
+    #ax.set_zlabel('height')
     #ax.scatter(x, y, z)
     #plt.savefig("inside.jpg")
+    
     i+=1
 
-print("person" , person_contact)
 plt.show()
 #plt.savefig("simulation.jpg")
+        
+print("Number of particles in contact with person: " , person_contact)
+print("Probability of an airborne virus reaching a person: ", (person-contact/num_simulation)*100)
