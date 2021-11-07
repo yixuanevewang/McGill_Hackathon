@@ -109,4 +109,4 @@ plt.show()
 #plt.savefig("simulation.jpg")
         
 print("Number of particles in contact with person: " , person_contact)
-print("Probability of an airborne virus reaching a person: ", (person-contact/num_simulation)*100)
+print("Probability of an airborne virus reaching a person: ", (person_contact/num_simulation)*100)
