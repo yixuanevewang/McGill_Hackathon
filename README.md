@@ -1,10 +1,17 @@
 # hackathon
-McGill 2021 Hackathon
+McGill 2021 Physics Hackathon
+ - first ever hack
+ - simulated the random walk of 1000 airborned viral molecules to test the effectiveness of 2m social distancing
+ - worked on project with Jessica
 
--first 1000 simulation: contact person = 19 (ie. ~2% of particles made it 2m)
+## files
+airborne_virus - the latest version of the code to run the simulation. currently set at 2m distancing.
 
--simulated 1000 times again, but set abs(z) < 150 (to account for average height of person), resulted in 87 hits (ie. 8.7%)
+2m_distancing_plot.png - layered line plot of 1000 sims with 2m distancing
 
-  - run again abs(z) < 150, 72 hit. run and generated graph in 3:16.39 min
+2m_distancing_scatter.png - scatter plot of the final positions of the airborne viruses with 2m distancing. See a gradient with highest concentration near the centre
 
--set abs(x) and abs(y) < 1 (ie. 1 metre distance) and abs(z) <150, 519 hits out of 1000 (52% chance of being infected with non-top talking)
+probability_2m.png - output of the graph along with the number of molecules in contact with a person, as well as the probability that the person if infected with covid while distancing 2m
+
+probability_1m.png - output of graph with console for distancing of 1m
+
